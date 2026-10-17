@@ -1,0 +1,60 @@
+# Home Assistant add-on manifest for Nightjar.
+#
+# Runs the battery-sync daemon unattended on HAOS / Raspberry Pi 4. Options are
+# mapped to environment variables by run.sh; the app itself only ever reads
+# os.environ (get_api_key / get_credentials), never this options file. Defaults
+# to dry-run: writes to the Fox ESS scheduler are gated on `live: true` + a
+# restart, never on a runtime control topic.
+#
+# Each release copies this file and translations/ unchanged into the public
+# nightjar-addons repo, so no comment or value here may name or link the code
+# repo. Home Assistant pulls `image` at `version` instead of building it.
+# addon/stage-local.sh drops the `image` line so a side-loaded copy still builds.
+name: Nightjar
+slug: nightjar
+version: "0.2.0"
+description: >-
+  Force-charge the Fox ESS battery during Octopus Intelligent Go dispatch
+  windows, and publish status to Home Assistant over MQTT discovery.
+url: https://github.com/sleeplessv/nightjar-addons
+image: ghcr.io/sleeplessv/nightjar
+arch:
+  - aarch64
+startup: application
+boot: auto
+init: false
+
+# Pull MQTT broker credentials from the Mosquitto add-on when the host is left
+# blank. `services` declares the dependency so `bashio::services mqtt ...` works.
+services:
+  - mqtt:want
+
+options:
+  octopus_api_key: ""
+  fox_api_key: ""
+  fox_device_sn: ""
+  live: false
+  interval: 300
+  confirm_threshold: 1.5
+  max_reading_age: 600
+  fast_interval: 60
+  fast_lead: 120
+  mqtt_host: ""
+  mqtt_port: 1883
+  mqtt_username: ""
+  mqtt_password: ""
+
+schema:
+  octopus_api_key: password
+  fox_api_key: password
+  fox_device_sn: str
+  live: bool
+  interval: int(1,)
+  confirm_threshold: float(0,)
+  max_reading_age: int(1,)
+  fast_interval: int(1,)
+  fast_lead: int(0,)
+  mqtt_host: str?
+  mqtt_port: port?
+  mqtt_username: str?
+  mqtt_password: password?

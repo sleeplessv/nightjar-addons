@@ -1,0 +1,62 @@
+configuration:
+  octopus_api_key:
+    name: Octopus API key
+    description: Your Octopus Energy API key.
+  fox_api_key:
+    name: Fox ESS API key
+    description: Your Fox ESS OpenAPI key.
+  fox_device_sn:
+    name: Fox inverter serial number
+    description: The serial number of the Fox ESS inverter to control.
+  live:
+    name: Live mode
+    description: >-
+      When off (the default) the daemon runs in dry-run and never writes to the
+      inverter. Turn it on and restart the add-on to enable real force-charge
+      writes.
+  interval:
+    name: Reconcile interval (seconds)
+    description: >-
+      How often the daemon re-checks dispatch windows and reconciles the battery
+      schedule.
+  confirm_threshold:
+    name: Confirmation threshold (kW)
+    description: >-
+      During a dispatch outside the off-peak window, the battery force-charges
+      only while the Fox ESS house load is at least this many kW, which means
+      the car is charging.
+  max_reading_age:
+    name: Maximum reading age (seconds)
+    description: >-
+      A Fox ESS house-load or Octopus vehicle-power reading older than this
+      counts as no reading, and the battery does not force-charge on it.
+  fast_interval:
+    name: Fast interval during dispatches (seconds)
+    description: >-
+      How often the daemon reconciles while a SMART dispatch is active or about
+      to start, outside the off-peak window (23:30-05:30).
+  fast_lead:
+    name: Fast-interval lead time (seconds)
+    description: >-
+      How long before a SMART dispatch starts the daemon switches to the fast
+      interval.
+  mqtt_host:
+    name: MQTT host
+    description: >-
+      Leave blank to auto-use the Mosquitto broker add-on. Set this only for an
+      external broker.
+  mqtt_port:
+    name: MQTT port
+    description: >-
+      MQTT broker port. Ignored when the MQTT host is blank and Mosquitto is
+      auto-discovered.
+  mqtt_username:
+    name: MQTT username
+    description: >-
+      Optional. Leave blank for an anonymous broker or when auto-discovering
+      Mosquitto.
+  mqtt_password:
+    name: MQTT password
+    description: >-
+      Optional. Leave blank for an anonymous broker or when auto-discovering
+      Mosquitto.
