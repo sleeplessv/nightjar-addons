@@ -40,6 +40,14 @@ configuration:
     description: >-
       How long before a SMART dispatch starts the daemon switches to the fast
       interval.
+  extend_on_charging:
+    name: Extend while the car charges
+    description: >-
+      Off by default. When on, outside the off-peak window, a force-charge
+      slot that a SMART dispatch started keeps extending one half-hour at a
+      time while the car is still charging after the dispatch ends. It never
+      starts a slot. Needs a confirmation threshold of at least 1.0 kW, or the
+      add-on refuses to start.
   mqtt_host:
     name: MQTT host
     description: >-
