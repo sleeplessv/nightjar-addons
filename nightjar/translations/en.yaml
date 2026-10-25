@@ -48,6 +48,14 @@ configuration:
       time while the car is still charging after the dispatch ends. It never
       starts a slot. Needs a confirmation threshold of at least 1.0 kW, or the
       add-on refuses to start.
+  follow_happy_hours:
+    name: Follow booked happy hours
+    description: >-
+      Off by default. When on, the battery force-charges through every Weekend
+      Happy Hour you booked in the Octopus app, with no need for the car to
+      charge. It never books one for you. It reads an unofficial Octopus
+      endpoint that is slow and sometimes down; then it keeps the last bookings
+      it read.
   mqtt_host:
     name: MQTT host
     description: >-
