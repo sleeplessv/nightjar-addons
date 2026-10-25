@@ -13,7 +13,7 @@
 # still builds.
 name: Nightjar
 slug: nightjar
-version: "0.5.0"
+version: "0.5.1"
 description: >-
   Force-charge the Fox ESS battery during Octopus Intelligent Go dispatch
   windows, and publish status to Home Assistant over MQTT discovery.
@@ -41,7 +41,7 @@ options:
   fast_interval: 60
   fast_lead: 120
   extend_on_charging: false
-  follow_happy_hours: false
+  follow_happy_hours: true
   mqtt_host: ""
   mqtt_port: 1883
   mqtt_username: ""

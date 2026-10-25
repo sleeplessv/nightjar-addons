@@ -51,9 +51,9 @@ configuration:
   follow_happy_hours:
     name: Follow booked happy hours
     description: >-
-      Off by default. When on, the battery force-charges through every Weekend
+      On by default. While on, the battery force-charges through every Weekend
       Happy Hour you booked in the Octopus app, with no need for the car to
-      charge. It never books one for you. It reads an unofficial Octopus
+      charge. Turn it off to ignore your bookings. It never books one for you. It reads an unofficial Octopus
       endpoint that is slow and sometimes down; then it keeps the last bookings
       it read.
   mqtt_host:
